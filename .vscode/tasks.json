@@ -1,3 +1,17 @@
+//{
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+//    "version": "2.0.0",
+//    "tasks": [
+//        {
+//            "label": "fix_gdbinit",
+//            "type": "shell",
+            //"command": "sed -i '' -e '/^target remote/d' ${workspaceFolder}/.gdbinit"
+//            "command": "sed -i '' -e '/home/rana/.config/gdb/.gdbinit"
+//        }
+//    ]
+//}
+
 {
     "version": "2.0.0",
     "tasks": [
@@ -7,8 +21,9 @@
             "args": [
                 "-c",
                 //"make && make qemu-nox-gdb"
+                "make qemu-gdb"
                 //"make qemu-nox-gdb"
-                "make qemu-nox"
+                //"make qemu-nox"
             ],
             "presentation": {
                 "echo": true,
@@ -22,6 +37,7 @@
                 "kind": "build",
                 "isDefault": true
             }
-        }
+        },
+        
     ]
 }

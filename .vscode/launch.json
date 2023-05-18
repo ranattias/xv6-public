@@ -2,13 +2,42 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "gdb",
-            "request": "attach",
-            "name": "debug xv6",
-            "executable": "kernel/kernel",
+ 
+            "name": "(gdb) Attach",
+            "type": "cppdbg",
+            //"request": "attach",
+            "request": "launch",
+            "program": "${workspaceFolder}/kernel",
+            "MIMode": "gdb",
+            "args": [],
+            "stopAtEntry": false,
             "target": ":26000",
             "remote": true,
             "cwd": "${workspaceRoot}",
+ 
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerArgs": "",
+            "targetArchitecture": "x86_64",
+            "customLaunchSetupCommands": [
+                {
+                    "text": "target remote localhost:26000",
+                    "description": "Connect to QEMU remote debugger"
+                }
+
+            ],
+            "avoidWindowsConsoleRedirection": true
         }
     ]
+
 }

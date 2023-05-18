@@ -11,11 +11,6 @@
 #include "processInfo.h"
 
 
-int sys_getNumProc(void){
-  cprintf("hi from getNumProc system call\n");
-  return 1;
-}
-
 int sys_getMaxPid(void){
   cprintf("hi from getMaxPid system call\n");
   return 1;

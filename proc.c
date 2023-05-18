@@ -24,8 +24,50 @@ extern void trapret(void);
 static void wakeup1(void *chan);
 
 
+static struct proc* allocproc(void);
 
 // for new sys calls
+
+
+int sys_getNumProc(void){
+  cprintf("hi from getNumProc system call\n");
+  
+  // struct proc *np;
+  // struct proc *curproc = myproc();
+  // int pid;
+
+  // // Allocate process.
+  // if((np = allocproc()) == 0){
+  //   return -1;
+  // }
+
+  // // Copy process state from proc.
+  // if((np->pgdir = copyuvm(curproc->pgdir, curproc->sz)) == 0){
+  //   kfree(np->kstack);
+  //   np->kstack = 0;
+  //   np->state = UNUSED;
+  //   return -1;
+  // }
+  // np->sz = curproc->sz;
+  // np->parent = curproc;
+  // *np->tf = *curproc->tf;
+
+  // // Clear %eax so that fork returns 0 in the child.
+  // np->tf->eax = 0;
+
+
+  // pid = np->pid;
+
+  // acquire(&ptable.lock);
+
+  // np->state = RUNNABLE;
+
+  // return pid;
+  return 1;
+
+}
+
+
 
 
 int getProcInfo(int pid, struct processInfo* p){
