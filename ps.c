@@ -1,5 +1,8 @@
 #include "types.h"
 #include "user.h"
+#include "processInfo.h"
+
+struct processInfo* pi;
 
 void printstring(char *s)
 {
@@ -31,15 +34,19 @@ void f(void)
 
 int main(void)
 {
-  struct processInfo* abb = 0;
+  
+  
+  printf(1,"Total number of active processes: %d\n", getNumProc());
 
-  printstring("hellow >> \n");
-  printstring("this is PS program - user space\n ");
-  
-  getProcInfo(10, abb);
-  getNumProc();
-  getMaxPid();
-  
+  int maxPid = getMaxPid();
+  printf(1, "Maximum PID: %d\n", maxPid);
+
+  printf(1, "PID    STATE    PPID      SZ    NFD    NRSWITCH\n");
+
+  for(int i=maxPid; i>0 ; --i){
+    if (getProcInfo(i, pi)==1)
+        printf(1," %d\t %d\t %d\t %d\t %d\t %d\t\n", i, pi->state, pi->ppid, pi->sz, pi->nfd, pi->nrswitch);
+  }
 
   exit();
 

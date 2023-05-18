@@ -27,6 +27,7 @@
                     "ignoreFailures": true
                 }
             ],
+            //"preLaunchTask": "Launch Qemu",
             "miDebuggerArgs": "",
             "targetArchitecture": "x86_64",
             "customLaunchSetupCommands": [

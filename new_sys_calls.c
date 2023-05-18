@@ -5,16 +5,16 @@
 
 
 
-int getNumProc(void){
-    cprint("hi from getNumProc system call\n");
-}
+// int getNumProc(void){
+//     cprint("hi from getNumProc system call\n");
+// }
 
-int getMaxPid(void){
-    cprint("hi from getMaxPid system call\n");
+// int getMaxPid(void){
+//     cprint("hi from getMaxPid system call\n");
 
-}
-int getProcInfo(int pid, struct processInfo*){
-    cprint("hi from getProcInfo system call\n");
-    cprint("got pid nu.: %d \n",pid);
-}
+// }
+// int getProcInfo(int pid, struct processInfo*){
+//     cprint("hi from getProcInfo system call\n");
+//     cprint("got pid nu.: %d \n",pid);
+// }
 

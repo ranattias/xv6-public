@@ -11,19 +11,14 @@
 #include "processInfo.h"
 
 
-int sys_getMaxPid(void){
-  cprintf("hi from getMaxPid system call\n");
-  return 1;
-}
+
 
 
 int sys_getProcInfo(void){
 //The arguments are on the user space stack.
 //Can access them using argint, argptr, argstr and argfd (they 
 //use the lower level fetchint, fetchstr).
-  cprintf("hi from getProcInfo system call\n");
-    
-
+  
   //getProcInfo(int pid, struct processInfo*);
   struct processInfo *f;
   int pid;

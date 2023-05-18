@@ -16,7 +16,8 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "compile xv6 and run in debug mode",
+            //"label": "compile xv6 and run in debug mode",
+            "label": "Launch Qemu",
             "command": "bash",
             "args": [
                 "-c",

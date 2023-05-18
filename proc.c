@@ -30,51 +30,69 @@ static struct proc* allocproc(void);
 
 
 int sys_getNumProc(void){
-  cprintf("hi from getNumProc system call\n");
   
-  // struct proc *np;
-  // struct proc *curproc = myproc();
-  // int pid;
+  struct proc *p;
+  int proc_num = 0;
+  acquire(&ptable.lock);
 
-  // // Allocate process.
-  // if((np = allocproc()) == 0){
-  //   return -1;
-  // }
-
-  // // Copy process state from proc.
-  // if((np->pgdir = copyuvm(curproc->pgdir, curproc->sz)) == 0){
-  //   kfree(np->kstack);
-  //   np->kstack = 0;
-  //   np->state = UNUSED;
-  //   return -1;
-  // }
-  // np->sz = curproc->sz;
-  // np->parent = curproc;
-  // *np->tf = *curproc->tf;
-
-  // // Clear %eax so that fork returns 0 in the child.
-  // np->tf->eax = 0;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state != UNUSED){
+      proc_num++;
+    }
+  }
+    
+  release(&ptable.lock);
+  
+  return proc_num;
+  
+}
 
 
-  // pid = np->pid;
 
-  // acquire(&ptable.lock);
+int sys_getMaxPid(void){
+  
+  struct proc *p;
+  int MaxPid = 0;
+  acquire(&ptable.lock);
 
-  // np->state = RUNNABLE;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+    if(p->pid > MaxPid)
+      MaxPid = p->pid;
 
-  // return pid;
-  return 1;
-
+  release(&ptable.lock);
+  
+  return MaxPid;
+  
 }
 
 
 
 
-int getProcInfo(int pid, struct processInfo* p){
-  cprintf("hi from getProcInfo system call 2\n");
-  cprintf("got pid nu.: %d \n",pid);
-  return 1;
+int getProcInfo(int pid, struct processInfo* pi){
+  
+  int found=0, fc=0;  //file counter
+  struct proc *p;
+  acquire(&ptable.lock);
 
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+    if(p->pid == pid){
+      pi->state = (int)p->state;
+      if (pid==1)
+        pi->ppid = 0;
+      else 
+        pi->ppid = (int)p->parent->pid;
+      pi->sz = (int)p->sz;
+      while (p->ofile[fc] !=0)
+        fc++;
+      pi->nfd = fc;
+      pi->nrswitch = (int)p->cnxt_in_cnt;
+      found  =1;
+    }
+     
+  release(&ptable.lock);
+
+  return found;
+  
 }
 
 
@@ -403,6 +421,7 @@ scheduler(void)
       p->state = RUNNING;
 
       swtch(&(c->scheduler), p->context);
+      p->cnxt_in_cnt++;
       switchkvm();
 
       // Process is done running for now.
