@@ -37,3 +37,11 @@ void* memset(void*, int, uint);
 void* malloc(uint);
 void free(void*);
 int atoi(const char*);
+
+//new system calls
+
+struct processInfo;
+
+int getNumProc(void);
+int getMaxPid(void);
+int getProcInfo(int pid, struct processInfo*);

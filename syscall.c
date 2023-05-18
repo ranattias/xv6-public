@@ -104,6 +104,13 @@ extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
 
+
+//new system calls
+extern int sys_getNumProc(void);
+extern int sys_getMaxPid(void);
+extern int sys_getProcInfo(void);
+
+
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
@@ -126,6 +133,11 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+
+//new system calls
+[SYS_getNumProc] sys_getNumProc,
+[SYS_getMaxPid]   sys_getMaxPid,
+[SYS_getProcInfo]  sys_getProcInfo,
 };
 
 void

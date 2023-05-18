@@ -7,6 +7,9 @@
 #include "proc.h"
 #include "spinlock.h"
 
+// for new sys calls 
+#include "processInfo.h"
+
 struct {
   struct spinlock lock;
   struct proc proc[NPROC];
@@ -19,6 +22,20 @@ extern void forkret(void);
 extern void trapret(void);
 
 static void wakeup1(void *chan);
+
+
+
+// for new sys calls
+
+
+int getProcInfo(int pid, struct processInfo* p){
+  cprintf("hi from getProcInfo system call 2\n");
+  cprintf("got pid nu.: %d \n",pid);
+  return 1;
+
+}
+
+
 
 void
 pinit(void)

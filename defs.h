@@ -10,6 +10,11 @@ struct sleeplock;
 struct stat;
 struct superblock;
 
+//for new system calls
+struct processInfo;
+
+
+
 // bio.c
 void            binit(void);
 struct buf*     bread(uint, uint);
@@ -120,6 +125,14 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
+
+
+// for new sys calls - not called from kernel, therefore not needed
+//int getNumProc(void);
+//int getMaxPid(void);
+int getProcInfo(int pid, struct processInfo*);
+
+
 
 // swtch.S
 void            swtch(struct context**, struct context*);
