@@ -372,6 +372,8 @@ wait(void)
         p->name[0] = 0;
         p->killed = 0;
         p->state = UNUSED;
+        p->cnxt_in_cnt =0;
+
         release(&ptable.lock);
         return pid;
       }

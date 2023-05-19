@@ -22,9 +22,9 @@
             "args": [
                 "-c",
                 //"make && make qemu-nox-gdb"
-                "make qemu-gdb"
+                //"make qemu-gdb"
                 //"make qemu-nox-gdb"
-                //"make qemu-nox"
+                "make qemu-nox"
             ],
             "presentation": {
                 "echo": true,
