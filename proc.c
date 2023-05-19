@@ -70,7 +70,7 @@ int sys_getMaxPid(void){
 
 int getProcInfo(int pid, struct processInfo* pi){
   
-  int found=0, fc=0;  //file counter
+  int found=-1, fc=0;  //file counter
   struct proc *p;
   acquire(&ptable.lock);
 
@@ -86,7 +86,7 @@ int getProcInfo(int pid, struct processInfo* pi){
         fc++;
       pi->nfd = fc;
       pi->nrswitch = (int)p->cnxt_in_cnt;
-      found  =1;
+      found  =0;
     }
      
   release(&ptable.lock);

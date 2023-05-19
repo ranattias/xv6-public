@@ -2,6 +2,8 @@
     "files.associations": {
         "defs.h": "c",
         "file.h": "c",
-        "user.h": "c"
+        "user.h": "c",
+        "processinfo.h": "c",
+        "syscall.h": "c"
     }
 }
