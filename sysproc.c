@@ -15,16 +15,12 @@
 
 
 int sys_getProcInfo(void){
-//The arguments are on the user space stack.
-//Can access them using argint, argptr, argstr and argfd (they 
-//use the lower level fetchint, fetchstr).
+
   
-  //getProcInfo(int pid, struct processInfo*);
   struct processInfo *f;
   int pid;
 
   if (argint(0, &pid) < 0 || argptr(1, (void*)&f, sizeof(*f)) < 0)
-  //if(argfd(0, 0, &f) < 0 || argptr(1, (void*)&st, sizeof(*st)) < 0)
     return -1;
   return getProcInfo(pid, f);
 
